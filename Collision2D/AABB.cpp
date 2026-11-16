@@ -1,5 +1,4 @@
 #include "AABB.h"
-
 bool isColliding(const Rect& a, const Rect& b) {
 	return !(
 		a.x + a.width/2 <= b.x - b.width/2 || //a의 오른쪽 끝이 b의 왼쪽보다 왼쪽이거나 같음

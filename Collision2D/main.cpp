@@ -1,18 +1,21 @@
 ﻿#include <iostream>
 #include "AABB.h"
+#include "Circle.h"
+
 using namespace std;
 int main()
 {
-    Rect a = { 10, 0, 10, 10 };
-    Rect b = { 0, 0, 10, 10 } ;
-    Rect c = { 5, 5, 10, 10 };
-    Rect d = { 20, 20, 10, 10 };
-    Rect e = { 0, 0, 5, 5 };
-    Rect f = { 0, 0, 20, 20 };
+    Circle a = { 0, 0, 5 };
+    Circle b = { 7, 0, 5 };
+    Circle c = { 0, 7, 5 };
+    Circle d = { 0, 0, 10 };
     cout << boolalpha;
+    cout << isColliding(a, b) << endl;
     cout << isColliding(a, c) << endl;
+    cout << isColliding(a, d) << endl;
+    cout << isColliding(b, c) << endl;
     cout << isColliding(b, d) << endl;
-    cout << isColliding(b, a) << endl;
-    cout << isColliding(f, e) << endl;
+    cout << isColliding(c, d) << endl;
+
     return 0;
 }
