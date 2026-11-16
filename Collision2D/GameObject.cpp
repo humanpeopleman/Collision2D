@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
-GameObject::GameObject(int id, const std::string& name, float x, float y, bool active)
-	: id(id), name(name), x(x), y(y), active(active) {
+GameObject::GameObject(int id, const std::string& name, float x, float y, float width, float height, bool active)
+	: id(id), name(name), x(x), y(y), width(width), height(height), active(active) {
 }
 void GameObject::setPosition(float newX, float newY) {
 	x = newX;
@@ -23,4 +23,7 @@ bool GameObject::isActive() const {
 
 void GameObject::setActive(bool state) {
 	active = state;
+}
+Rect GameObject::getBound() const {
+	return { x, y, width, height };
 }
