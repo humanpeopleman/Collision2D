@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "AABB.h"
+#include "Circle.h"
 class GameObject
 {
 	int id;
@@ -10,7 +11,7 @@ class GameObject
 	bool active;
 
 public:
-	GameObject(int id, const std::string& name, float x, float y, float width, float height, bool active = true);
+	GameObject(int id, const std::string& name, float x, float y, float width, float height, bool active);
 	
 	void setPosition(float newX, float newY);
 	void move(float deltaX, float deltaY);
@@ -21,5 +22,7 @@ public:
 	void setActive(bool state);
 
 	Rect getBound() const;
+
+	int getId() const;
 };
 

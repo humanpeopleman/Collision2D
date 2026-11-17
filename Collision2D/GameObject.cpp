@@ -27,3 +27,6 @@ void GameObject::setActive(bool state) {
 Rect GameObject::getBound() const {
 	return { x, y, width, height };
 }
+int GameObject::getId() const {
+	return id;
+}
