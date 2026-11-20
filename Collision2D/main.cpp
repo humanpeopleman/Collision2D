@@ -1,39 +1,59 @@
-﻿#include <iostream>
+﻿
+#include <iostream>
 #include "CollisionManager.h"
-#include "GameObject.h"
 
-int main() {
-    CollisionManager manager;
+int main()
+{
+    // 1. 서로 떨어진 객체
+    {
+        std::cout << "\n[Test 1: No Collision]\n";
 
-    // GameObject 생성
-    GameObject player(2, "Player", 0, 0, 1, 1, true);
-    GameObject enemy1(3, "Enemy1", 1, 1, 1, 1, true);
-    GameObject enemy2(4, "Enemy2", 10, 10, 1, 1, true);
-    GameObject enemy3(5, "Enemy3", 0.5f, 0.5f, 1, 1, true);
+        GameObject a(1, "A", Rect{ 0, 0, 2, 2 });
+        GameObject b(2, "B", Circle{ 100, 100, 1 });
 
-    // 객체 등록
-    manager.addGameObject(player);
-    manager.addGameObject(enemy1);
-    manager.addGameObject(enemy2);
-    manager.addGameObject(enemy3);
+        CollisionManager manager;
+        manager.addGameObject(a);
+        manager.addGameObject(b);
 
-    // 등록 개수 확인
-    std::cout << "Object Count: "
-        << manager.getObjectCount() << std::endl;
+        std::cout << "Collision Check Count: "
+            << manager.checkCollisions() << '\n';
+    }
 
-    // 충돌 검사
-    std::cout << "\n[Collision Check 1]\n";
-    manager.checkCollisions();
+    // 2. 비활성 객체 제외
+    {
+        std::cout << "\n[Test 2: Inactive Object]\n";
 
-    // Enemy1 제거
-    manager.removeGameObject(2);
+        GameObject a(3, "A", Rect{ 0, 0, 4, 4 });
+        GameObject b(4, "B", Circle{ 0, 0, 2 });
 
-    std::cout << "\nObject Count After Removal: "
-        << manager.getObjectCount() << std::endl;
+        b.setActive(false);
 
-    // 다시 충돌 검사
-    std::cout << "\n[Collision Check 2]\n";
-    manager.checkCollisions();
+        CollisionManager manager;
+        manager.addGameObject(a);
+        manager.addGameObject(b);
+
+        std::cout << "Collision Check Count: "
+            << manager.checkCollisions() << '\n';
+    }
+
+    // 3. 중복 ID 등록 방지
+    {
+        std::cout << "\n[Test 3: Duplicate ID]\n";
+
+        GameObject a(5, "A", Rect{ 0, 0, 2, 2 });
+        GameObject b(5, "B", Circle{ 0, 0, 2 });
+
+        CollisionManager manager;
+
+        std::cout << "First Add: "
+            << manager.addGameObject(a) << '\n';
+
+        std::cout << "Second Add: "
+            << manager.addGameObject(b) << '\n';
+
+        std::cout << "Object Count: "
+            << manager.getObjectCount() << '\n';
+    }
 
     return 0;
 }

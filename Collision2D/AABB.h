@@ -1,4 +1,5 @@
 #pragma once
+#include "Circle.h"
 //사각형 구조체
 struct Rect { 
 	float x; //중심점의 x좌표
@@ -8,3 +9,4 @@ struct Rect {
 };
 
 bool isColliding(const Rect& a, const Rect& b); //충돌 확인 함수
+bool isColliding(const Rect& rect, const Circle& circle);

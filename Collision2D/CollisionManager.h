@@ -4,11 +4,11 @@
 #include "GameObject.h"
 class CollisionManager
 {
-	std::vector<GameObject> gameObjects;
+	std::vector<GameObject*> gameObjects;
 public:
-	void addGameObject(const GameObject& obj);
+	bool addGameObject(GameObject& obj);
 	void removeGameObject(int id);
 	std::size_t getObjectCount() const;
-	void checkCollisions() const;
+	std::size_t checkCollisions() const;
 };
 
